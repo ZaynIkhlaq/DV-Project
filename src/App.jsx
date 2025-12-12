@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Papa from 'papaparse';
 import Hero from './components/Hero';
 import VisualizationSection from './components/VisualizationSection';
+import ThankYouSection from './components/ThankYouSection';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -417,6 +418,9 @@ function App() {
         data={wellbeingWorstData}
         index={23}
       />
+
+      {/* Thank You Section */}
+      <ThankYouSection />
     </div>
   );
 };

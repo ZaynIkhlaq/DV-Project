@@ -23,15 +23,51 @@ ChartJS.register(
 const SuicideStrainChart = ({ data }) => {
   const scatterData = useMemo(() => processSuicideStrainData(data), [data]);
 
+  // Calculate linear regression for trend line
+  const trendLine = useMemo(() => {
+    if (scatterData.length === 0) return [];
+    
+    const n = scatterData.length;
+    const x = scatterData.map(d => d.x);
+    const y = scatterData.map(d => d.y);
+    
+    const sumX = x.reduce((a, b) => a + b, 0);
+    const sumY = y.reduce((a, b) => a + b, 0);
+    const sumXY = x.reduce((sum, xi, i) => sum + xi * y[i], 0);
+    const sumX2 = x.reduce((sum, xi) => sum + xi * xi, 0);
+    
+    const slope = (n * sumXY - sumX * sumY) / (n * sumX2 - sumX * sumX);
+    const intercept = (sumY - slope * sumX) / n;
+    
+    const minX = Math.min(...x);
+    const maxX = Math.max(...x);
+    
+    return [
+      { x: minX, y: slope * minX + intercept },
+      { x: maxX, y: slope * maxX + intercept }
+    ];
+  }, [scatterData]);
+
   const chartData = {
     datasets: [
       {
         label: 'Countries',
         data: scatterData,
-        backgroundColor: 'rgba(239, 68, 68, 0.6)', // Red
+        backgroundColor: 'rgba(239, 68, 68, 0.6)',
         borderColor: 'rgba(239, 68, 68, 1)',
         pointRadius: 6,
         pointHoverRadius: 9
+      },
+      {
+        type: 'line',
+        label: 'Trend Line',
+        data: trendLine,
+        borderColor: '#F59E0B',
+        borderWidth: 3,
+        borderDash: [5, 5],
+        pointRadius: 0,
+        fill: false,
+        tension: 0
       }
     ]
   };
@@ -40,7 +76,10 @@ const SuicideStrainChart = ({ data }) => {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
-      legend: { display: false },
+      legend: {
+        display: true,
+        labels: { color: '#cbd5e1' }
+      },
       title: {
         display: true,
         text: 'Development Strain: Suicide vs GDP',
@@ -48,8 +87,14 @@ const SuicideStrainChart = ({ data }) => {
         font: { size: 18, weight: 'bold' }
       },
       tooltip: {
+        backgroundColor: 'rgba(15, 23, 42, 0.95)',
+        titleColor: '#f1f5f9',
+        bodyColor: '#cbd5e1',
         callbacks: {
-          label: (ctx) => `${ctx.raw.country}: GDP $${Math.round(ctx.raw.x).toLocaleString()}, Rate ${ctx.raw.y.toFixed(1)}`
+          label: (ctx) => {
+            if (ctx.dataset.type === 'line') return 'Trend';
+            return `${ctx.raw.country}: GDP $${Math.round(ctx.raw.x).toLocaleString()}, Rate ${ctx.raw.y.toFixed(1)}`;
+          }
         }
       }
     },

@@ -480,7 +480,7 @@ export const processHistogramData = (data) => {
     .map(d => parseFloat(d.Well_Being_Index))
     .filter(v => !isNaN(v));
 
-  if (values.length === 0) return { labels: [], data: [] };
+  if (values.length === 0) return { labels: [], data: [], rawData: [] };
 
   const min = Math.min(...values);
   const max = Math.max(...values);
@@ -506,7 +506,7 @@ export const processHistogramData = (data) => {
     bins[binIndex]++;
   });
 
-  return { labels, data: bins };
+  return { labels, data: bins, rawData: values };
 };
 
 /**

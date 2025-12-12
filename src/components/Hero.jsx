@@ -46,7 +46,6 @@ const Hero = () => {
           style={{ top: '50%', left: '50%' }}
         />
       </div>
-
       {/* Content */}
       <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
         <motion.div

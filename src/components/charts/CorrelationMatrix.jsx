@@ -60,6 +60,16 @@ const CorrelationMatrix = ({ data }) => {
                 ))}
               </React.Fragment>
             ))}
+
+            {/* Bottom X-axis Row */}
+            <div className="h-32"></div> {/* Empty corner */}
+            {labels.map((label, i) => (
+              <div key={`x-axis-${i}`} className="h-32 flex items-start justify-center pt-2">
+                <span className="transform rotate-45 text-xs text-slate-300 whitespace-nowrap origin-top-left -translate-x-4 w-5 font-medium">
+                  {label}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
       </div>

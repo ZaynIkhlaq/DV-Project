@@ -361,12 +361,6 @@ export const processDevelopmentData = (data) => {
       data: worldData.map(d => parseFloat(d.Health_Exp_Per_Capita) || null),
       color: '#8b5cf6', // Purple
       yAxisLabel: 'USD ($)'
-    },
-    'Hospital_Beds_Per_1000': {
-      label: 'Hospital Beds per 1000 People',
-      data: worldData.map(d => parseFloat(d.Hospital_Beds_Per_1000) || null),
-      color: '#ec4899', // Pink
-      yAxisLabel: 'Beds'
     }
   };
 

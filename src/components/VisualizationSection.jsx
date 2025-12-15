@@ -294,6 +294,20 @@ const VisualizationSection = ({ title, description, chartType, data, index, coun
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-[#0f172a] to-slate-900 -z-10" />
       
+      {/* Slide number */}
+      <motion.div
+        className="absolute top-8 left-3 z-20"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={isInView ? { opacity: 1, scale: 1 } : {}}
+        transition={{ duration: 0.5, delay: 0.6 }}
+      >
+        <div className="glass rounded-full px-6 py-3 bg-white/5 backdrop-blur-md border border-[#0f172a] shadow-xl">
+          <span className="text-white font-semibold text-lg">
+            {index + 1}
+          </span>
+        </div>
+      </motion.div>
+      
       <div className="w-full max-w-[1800px] mx-auto">
         <div className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center ${layout === 'right' ? 'direction-rtl' : ''}`}>
           {/* Re-order visually if layout is right, but keep grid structure */}
@@ -310,20 +324,6 @@ const VisualizationSection = ({ title, description, chartType, data, index, coun
           )}
         </div>
       </div>
-
-      {/* Decorative elements */}
-      <motion.div
-        className="absolute top-20 right-20 w-64 h-64 bg-primary/5 rounded-full blur-[100px]"
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.5, 0.3],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
     </motion.section>
   );
 };

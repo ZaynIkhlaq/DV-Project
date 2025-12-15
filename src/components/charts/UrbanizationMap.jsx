@@ -16,6 +16,8 @@ const UrbanizationMap = ({ data }) => {
   const [tooltipContent, setTooltipContent] = useState('');
   const [zoom, setZoom] = useState(1);
   const [center, setCenter] = useState([0, 0]);
+  const [playbackSpeed, setPlaybackSpeed] = useState(1); // 0.5x, 1x, 2x
+  const [hasFinished, setHasFinished] = useState(false);
 
   const processedData = useMemo(() => processUrbanizationData(data), [data]);
   
@@ -35,14 +37,16 @@ const UrbanizationMap = ({ data }) => {
         const currentIndex = processedData.years.indexOf(prevYear);
         if (currentIndex >= processedData.years.length - 1) {
           setIsPlaying(false);
+          setHasFinished(true);
           return prevYear;
         }
+        setHasFinished(false);
         return processedData.years[currentIndex + 1];
       });
-    }, 800);
+    }, 800 / playbackSpeed); // Speed: 0.5x = 1600ms, 1x = 800ms, 2x = 400ms
 
     return () => clearInterval(interval);
-  }, [isPlaying, selectedYear, processedData.years]);
+  }, [isPlaying, selectedYear, processedData.years, playbackSpeed]);
 
   // Get color based on urbanization percentage
   const getColor = (urbanPercent) => {
@@ -61,9 +65,20 @@ const UrbanizationMap = ({ data }) => {
     setIsPlaying(!isPlaying);
   };
 
+  const handleReplay = () => {
+    setSelectedYear(processedData.years[0]);
+    setHasFinished(false);
+    setIsPlaying(true);
+  };
+
+  const handleSpeedChange = (speed) => {
+    setPlaybackSpeed(speed);
+  };
+
   const handleYearChange = (e) => {
     setSelectedYear(parseInt(e.target.value));
     setIsPlaying(false);
+    setHasFinished(false);
   };
 
   const handleZoomIn = () => {
@@ -281,6 +296,17 @@ const UrbanizationMap = ({ data }) => {
             {isPlaying ? '⏸' : '▶'}
           </button>
           
+          {hasFinished && (
+            <button 
+              className="play-button replay-button"
+              onClick={handleReplay}
+              title="Replay from start"
+              style={{ marginLeft: '8px' }}
+            >
+              ⟲
+            </button>
+          )}
+          
           <div className="year-slider">
             <input
               type="range"
@@ -291,6 +317,30 @@ const UrbanizationMap = ({ data }) => {
               className="slider"
             />
             <span className="year-label">{selectedYear}</span>
+          </div>
+          
+          {/* Speed Controls */}
+          <div className="speed-controls" style={{ display: 'flex', gap: '4px', alignItems: 'center', marginLeft: '16px' }}>
+            <span style={{ fontSize: '12px', color: '#cbd5e1', marginRight: '4px' }}>Speed:</span>
+            {[1, 2, 4, 6].map(speed => (
+              <button
+                key={speed}
+                onClick={() => handleSpeedChange(speed)}
+                className={`speed-button ${playbackSpeed === speed ? 'active' : ''}`}
+                style={{
+                  padding: '4px 12px',
+                  fontSize: '11px',
+                  backgroundColor: playbackSpeed === speed ? '#6366f1' : '#334155',
+                  color: '#fff',
+                  border: 'none',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s'
+                }}
+              >
+                {speed}x
+              </button>
+            ))}
           </div>
         </div>
 

@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import VisualizationSection from './components/VisualizationSection';
 import ConclusionSection from './components/ConclusionSection';
 import ThankYouSection from './components/ThankYouSection';
+import DataCleaningSection from './components/DataCleaningSection';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -226,6 +227,7 @@ function App() {
   return (
     <div className="bg-slate-900 h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth">
       <Hero />
+      <DataCleaningSection />
       
       <VisualizationSection
         title="Global GDP Per Capita Trend (1950-2022)"

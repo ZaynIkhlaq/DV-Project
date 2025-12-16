@@ -151,7 +151,7 @@ const VisualizationSection = ({ title, description, chartType, data, index, coun
         "Ideal group shows balanced development across dimensions"
       ],
       wellbeingBestPredictors: [
-        "GDP per capita shows strongest positive correlation (0.52)",
+        "Child Poverty Rate (inverted) shows strongest positive correlation (0.52)",
         "Education spending significantly impacts wellbeing (0.33)",
         "Child poverty reduction critical for societal health"
       ],

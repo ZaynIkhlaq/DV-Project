@@ -3,80 +3,50 @@ import { motion } from 'framer-motion';
 
 const Hero = () => {
   return (
-    <section className="relative h-screen min-h-screen snap-start flex items-center justify-center overflow-hidden bg-gradient-to-br from-dark via-slate-900 to-dark">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          className="absolute w-96 h-96 bg-primary/20 rounded-full blur-3xl"
-          animate={{
-            x: [0, 100, 0],
-            y: [0, -100, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-          style={{ top: '10%', left: '10%' }}
-        />
-        <motion.div
-          className="absolute w-96 h-96 bg-secondary/20 rounded-full blur-3xl"
-          animate={{
-            x: [0, -100, 0],
-            y: [0, 100, 0],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-          style={{ bottom: '10%', right: '10%' }}
-        />
-        <motion.div
-          className="absolute w-64 h-64 bg-accent/20 rounded-full blur-3xl"
-          animate={{
-            x: [0, -50, 0],
-            y: [0, 50, 0],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-          style={{ top: '50%', left: '50%' }}
-        />
+    <section className="min-h-screen w-full snap-start relative bg-[#020617] text-slate-200 overflow-hidden flex items-center justify-center">
+      {/* Abstract Background - Data Flow Lines */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-[1px] h-full bg-gradient-to-b from-transparent via-indigo-900/40 to-transparent" />
+        <div className="absolute top-0 right-1/4 w-[1px] h-full bg-gradient-to-b from-transparent via-indigo-900/40 to-transparent" />
+        <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-indigo-900/20 to-transparent" />
+        
+        {/* Glowing Orbs - subtle and dark */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-600/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-violet-600/10 rounded-full blur-[120px]" />
       </div>
-      {/* Content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
+
+      <div className="relative z-10 container mx-auto px-6 max-w-6xl text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 1, ease: "easeOut" }}
         >
           <motion.h1
-            className="text-6xl md:text-8xl font-bold mb-6 pb-6 gradient-text"
-            initial={{ opacity: 0, scale: 0.9 }}
+            className="text-6xl md:text-8xl font-light text-white tracking-tight mb-8"
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
           >
-            Rethinking Prosperity
+            Rethinking <br />
+            <span className="font-medium bg-gradient-to-r from-indigo-200 via-white to-purple-200 bg-clip-text text-transparent">
+              Prosperity
+            </span>
           </motion.h1>
           
           <motion.p
-            className="text-xl md:text-2xl text-slate-300 mb-4 max-w-4xl mx-auto leading-relaxed"
+            className="text-xl md:text-2xl text-slate-300 mb-6 font-light max-w-4xl mx-auto leading-relaxed"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
           >
-            We built a world of infinite growth on a finite planet. Now we face the consequences—
-            fractured communities, rising inequality, and the quiet collapse of social bonds.
+           Comparative Analysis of Economic Growth and Human Life Wellness
           </motion.p>
 
           <motion.p
-            className="text-lg text-slate-400 mb-12 max-w-3xl mx-auto"
+            className="text-lg text-slate-400 mb-12 max-w-3xl mx-auto leading-relaxed font-light"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
           >
             Through data visualization, we expose the hidden costs of consumerism: 
             atomized families, mental health crises, demographic decline, and the erosion of wellbeing 
@@ -87,7 +57,7 @@ const Hero = () => {
             className="flex flex-wrap gap-4 justify-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.9 }}
           >
             <button
               onClick={() => {
@@ -95,31 +65,31 @@ const Hero = () => {
                   behavior: 'smooth' 
                 });
               }}
-              className="btn-primary"
+              className="px-8 py-3 bg-white/5 border border-white/10 backdrop-blur-md rounded-full text-white font-medium hover:bg-white/10 hover:border-indigo-500/30 transition-all duration-300 flex items-center gap-3 group"
             >
-              Explore the Data
+              <span>Explore the Data</span>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 transform group-hover:translate-y-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
             </button>
           </motion.div>
         </motion.div>
       </div>
 
-      {/* Scroll indicator - positioned at bottom of hero section */}
+       {/* Scroll indicator - refined */}
       <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
+        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, y: [0, 10, 0] }}
+        transition={{ 
+          opacity: { delay: 1.5, duration: 1 },
+          y: { duration: 2, repeat: Infinity, ease: "easeInOut" } 
+        }}
       >
-        <div className="w-6 h-10 border-2 border-slate-400 rounded-full flex items-start justify-center p-2">
-          <motion.div
-            className="w-1.5 h-1.5 bg-slate-400 rounded-full"
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          />
+        <div className="w-5 h-8 border border-slate-600/50 rounded-full flex items-start justify-center p-1.5 backdrop-blur-sm">
+          <div className="w-1 h-1.5 bg-slate-400 rounded-full" />
         </div>
       </motion.div>
-
-      {/* Grid overlay effect */}
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDEwIEwgNDAgMTAgTSAxMCAwIEwgMTAgNDAgTSAwIDIwIEwgNDAgMjAgTSAyMCAwIEwgMjAgNDAgTSAwIDMwIEwgNDAgMzAgTSAzMCAwIEwgMzAgNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-20" />
     </section>
   );
 };

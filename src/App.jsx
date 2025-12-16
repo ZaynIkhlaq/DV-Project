@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Papa from 'papaparse';
 import Hero from './components/Hero';
 import VisualizationSection from './components/VisualizationSection';
+import ConclusionSection from './components/ConclusionSection';
 import ThankYouSection from './components/ThankYouSection';
 import {
   Chart as ChartJS,
@@ -411,6 +412,9 @@ function App() {
         data={wellbeingWorstData}
         index={22}
       />
+
+      {/* Conclusion Section */}
+      <ConclusionSection />
 
       {/* Thank You Section */}
       <ThankYouSection />

@@ -33,18 +33,6 @@ const VisualizationSection = ({ title, description, chartType, data, index, coun
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const containerVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut"
-      }
-    }
-  };
-
   const getKeyInsights = (type) => {
     const insights = {
       gdpPerCapita: [
@@ -243,8 +231,17 @@ const VisualizationSection = ({ title, description, chartType, data, index, coun
       animate={isInView ? { opacity: 1, x: 0 } : {}}
       transition={{ duration: 0.8, delay: 0.2 }}
     >
-      <div className="glass rounded-3xl p-6 glow h-full w-full flex items-center justify-center bg-slate-800/40 backdrop-blur-md border border-white/10 shadow-2xl">
-        {renderChart()}
+      <div className="relative h-full w-full">
+        {/* Glass Card for Chart */}
+        <div className="absolute inset-0 bg-slate-950/40 backdrop-blur-xl rounded-3xl border border-white/50 shadow-2xl flex items-center justify-center p-6 lg:p-8">
+           <div className="w-full h-full relative z-10 flex items-center justify-center">
+              {renderChart()}
+           </div>
+           {/* Inner Glow */}
+           <div className="absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/5 pointer-events-none"></div>
+        </div>
+        {/* Decorative elements behind chart */}
+        <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%] bg-indigo-500/5 blur-[100px] rounded-full"></div>
       </div>
     </motion.div>
   );
@@ -253,24 +250,33 @@ const VisualizationSection = ({ title, description, chartType, data, index, coun
 
   const detailsSection = (
     <motion.div
-      className="w-full lg:col-span-4 flex flex-col justify-center "
+      className="w-full lg:col-span-4 flex flex-col justify-center"
       initial={{ opacity: 0, x: layout === 'left' ? 50 : -50 }}
       animate={isInView ? { opacity: 1, x: 0 } : {}}
       transition={{ duration: 0.8, delay: 0.4 }}
     >
-      <div className="space-y-8 p-6">
-        <h2 className="text-5xl md:text-6xl font-bold gradient-text leading-tight pb-[15px]">
-          {title}
-        </h2>
-        <p className="text-xl text-slate-300 leading-relaxed font-light">
-          {description}
-        </p>
-        <div className="glass rounded-2xl p-6 bg-white/5 border border-white/10">
-          <h3 className="text-xl font-semibold mb-4 text-primary tracking-wide uppercase text-sm">Key Insights</h3>
-          <ul className="space-y-3 text-slate-400 text-lg">
+      <div className="space-y-8 p-4 lg:p-8">
+        <div>
+           <span className="text-indigo-400/80 font-mono text-xs tracking-[0.2em] uppercase mb-4 block">Analysis 0{index + 1}</span>
+           <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white tracking-tight leading-tight mb-6">
+             {title}
+           </h2>
+           <p className="text-lg text-slate-400 leading-relaxed font-light">
+             {description}
+           </p>
+        </div>
+
+        <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 lg:p-8 relative overflow-hidden group hover:border-indigo-500/20 transition-colors duration-500">
+           <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 blur-[50px] rounded-full -translate-y-1/2 translate-x-1/2"></div>
+           
+           <h3 className="text-sm font-medium mb-6 text-indigo-300 tracking-widest uppercase flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-indigo-500"></span>
+              Key Insights
+           </h3>
+           <ul className="space-y-4">
             {keyInsights.map((insight, idx) => (
-              <li key={idx} className="flex items-start">
-                <span className="text-secondary mr-3 text-xl">▸</span>
+              <li key={idx} className="flex items-start text-slate-300 font-light leading-relaxed">
+                <span className="text-indigo-500 mr-4 mt-1.5 text-xs">◆</span>
                 <span>{insight}</span>
               </li>
             ))}
@@ -283,31 +289,27 @@ const VisualizationSection = ({ title, description, chartType, data, index, coun
   return (
     <motion.section
       ref={ref}
-      className="visualization-section h-screen w-full snap-start flex items-center justify-center relative overflow-hidden px-4 md:px-12 py-8"
-      variants={containerVariants}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
+      className="visualization-section min-h-screen w-full snap-start flex items-center justify-center relative overflow-hidden bg-[#020617] py-20"
+      initial={{ opacity: 0 }}
+      animate={isInView ? { opacity: 1 } : {}}
+      transition={{ duration: 0.5 }}
     >
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-[#0f172a] to-slate-900 -z-10" />
+      {/* Unified Background Pattern */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-[1px] h-full bg-gradient-to-b from-transparent via-indigo-900/40 to-transparent opacity-50" />
+        <div className="absolute top-0 right-1/4 w-[1px] h-full bg-gradient-to-b from-transparent via-indigo-900/40 to-transparent opacity-50" />
+        <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-indigo-900/20 to-transparent opacity-50" />
+      </div>
       
-      {/* Slide number */}
-      <motion.div
-        className="absolute top-8 left-3 z-20"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={isInView ? { opacity: 1, scale: 1 } : {}}
-        transition={{ duration: 0.5, delay: 0.6 }}
-      >
-        <div className="glass rounded-full px-6 py-3 bg-white/5 backdrop-blur-md border border-[#0f172a] shadow-xl">
-          <span className="text-white font-semibold text-lg">
-            {index + 1}
-          </span>
-        </div>
-      </motion.div>
+      {/* Slide number indicator - updated to match Hero scroll indicator style */}
+      <div className="absolute top-8 left-8 z-20">
+         <div className="font-mono text-xs text-white/80 tracking-widest border border-white/50 px-3 py-1 rounded-full">
+            SLIDE {String(index + 1).padStart(2, '0')} / 23
+         </div>
+      </div>
       
-      <div className="w-full max-w-[1800px] mx-auto">
+      <div className="relative z-10 w-full max-w-[1800px] mx-auto px-6">
         <div className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center ${layout === 'right' ? 'direction-rtl' : ''}`}>
-          {/* Re-order visually if layout is right, but keep grid structure */}
           {layout === 'left' ? (
             <>
               {chartSection}

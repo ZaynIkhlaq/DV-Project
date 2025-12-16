@@ -4,124 +4,86 @@ import sirImage from '../assets/Sir.png';
 
 const ThankYouSection = () => {
   return (
-    <section className="relative h-screen snap-start flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-900">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          className="absolute w-96 h-96 bg-primary/10 rounded-full blur-3xl"
-          animate={{
-            x: [0, 50, 0],
-            y: [0, -50, 0],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-          style={{ top: '20%', left: '20%' }}
-        />
-        <motion.div
-          className="absolute w-96 h-96 bg-secondary/10 rounded-full blur-3xl"
-          animate={{
-            x: [0, -50, 0],
-            y: [0, 50, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-          style={{ bottom: '20%', right: '20%' }}
-        />
+    <section className="min-h-screen w-full snap-start relative bg-[#020617] text-slate-200 overflow-hidden flex items-center justify-center py-20">
+      {/* Abstract Background - Data Flow Lines */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-[1px] h-full bg-gradient-to-b from-transparent via-indigo-900/40 to-transparent" />
+        <div className="absolute top-0 right-1/4 w-[1px] h-full bg-gradient-to-b from-transparent via-indigo-900/40 to-transparent" />
+        <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-indigo-900/20 to-transparent" />
+        
+        {/* Glowing Orbs - subtle and dark */}
+        <div className="absolute top-1/3 left-1/3 w-96 h-96 bg-indigo-600/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-1/3 right-1/3 w-96 h-96 bg-violet-600/10 rounded-full blur-[120px]" />
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6">
-        <motion.div
+      <div className="relative z-10 container mx-auto px-6 max-w-5xl">
+        <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 1, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="text-center"
+          className="flex flex-col items-center text-center"
         >
-          {/* Image */}
+          <span className="text-indigo-400/80 font-mono text-xs tracking-[0.2em] uppercase mb-8 block">Project Conclusion</span>
+
+          {/* Profile Card */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
-            className="mb-8 flex justify-center"
+            className="mb-12 relative group"
           >
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-full blur-xl opacity-50"></div>
-              <img 
-                src={sirImage} 
-                alt="Thank You" 
-                className="relative w-48 h-48 rounded-full object-cover border-4 border-indigo-500/50 shadow-2xl"
-              />
-            </div>
+             <div className="absolute -inset-0.5 bg-gradient-to-r from-indigo-500/30 to-purple-500/30 rounded-full blur transition duration-700" />
+             <div className="relative p-2 bg-slate-950/50 backdrop-blur-xl border border-white/10 rounded-full">
+                <img 
+                  src={sirImage} 
+                  alt="Presenter" 
+                  className="w-40 h-40 md:w-56 md:h-56 rounded-full object-cover transition-all duration-500"
+                />
+             </div>
           </motion.div>
 
-          {/* Thank You Message */}
-          <motion.h1
-            className="text-5xl md:text-7xl font-bold mb-6 gradient-text pb-5"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
-          >
-            Any Questions ?
-          </motion.h1>
+          <h1 className="text-5xl md:text-7xl font-light text-white tracking-tight mb-8">
+            Any <span className="font-medium bg-gradient-to-r from-indigo-200 via-white to-purple-200 bg-clip-text text-transparent">Questions?</span>
+          </h1>
 
-          <motion.p
-            className="text-xl md:text-2xl text-slate-300 mb-8 max-w-3xl mx-auto"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            viewport={{ once: true }}
-          >
+          <p className="text-slate-400 leading-relaxed font-light text-xl md:text-2xl max-w-3xl mx-auto mb-16">
             We hope this data visualization helped illuminate the complex relationship between 
             economic development and societal wellbeing. The patterns we've uncovered challenge 
             conventional wisdom and invite deeper reflection.
-          </motion.p>
+          </p>
 
-          {/* Questions Section */}
-          <motion.div
-            className="mt-12 p-8rounded-2xl backdrop-blur-sm"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            viewport={{ once: true }}
-          >            
-            <div className="flex flex-wrap gap-4 justify-center">
-              <button
-                onClick={() => {
-                  document.querySelector('section').scrollIntoView({ 
-                    behavior: 'smooth' 
-                  });
-                }}
-                className="px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
-              >
-                Back to Top
-              </button>
-            </div>
-          </motion.div>
+          <div className="flex flex-col items-center gap-8">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => {
+                document.querySelector('section').scrollIntoView({ 
+                  behavior: 'smooth' 
+                });
+              }}
+              className="px-8 py-3 bg-white/5 border border-white/10 backdrop-blur-md rounded-full text-indigo-300 font-medium hover:bg-white/10 hover:border-indigo-500/30 transition-all duration-300 flex items-center gap-2 group"
+            >
+              <span>Back to Introduction</span>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 transform group-hover:-translate-y-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+              </svg>
+            </motion.button>
 
-          {/* Footer Note */}
-          <motion.p
-            className="mt-8 text-sm text-slate-500"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1 }}
-            viewport={{ once: true }}
-          >
-            Data sources: World Bank, OECD, UN Statistics Division • Created with React & Chart.js
-          </motion.p>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+              className="text-slate-600 text-sm font-light tracking-wide flex items-center gap-4"
+            >
+              <span>Data sources: World Bank, OECD, UN</span>
+              <span className="w-1 h-1 bg-slate-700 rounded-full"></span>
+              <span>React & Chart.js</span>
+            </motion.div>
+          </div>
         </motion.div>
       </div>
-
-      {/* Grid overlay effect */}
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDEwIEwgNDAgMTAgTSAxMCAwIEwgMTAgNDAgTSAwIDIwIEwgNDAgMjAgTSAyMCAwIEwgMjAgNDAgTSAwIDMwIEwgNDAgMzAgTSAzMCAwIEwgMzAgNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-20" />
     </section>
   );
 };

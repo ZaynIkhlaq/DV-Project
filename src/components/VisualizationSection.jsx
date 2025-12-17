@@ -304,7 +304,7 @@ const VisualizationSection = ({ title, description, chartType, data, index, coun
       {/* Slide number indicator - updated to match Hero scroll indicator style */}
       <div className="absolute top-8 left-8 z-20">
          <div className="font-mono text-xs text-white/80 tracking-widest border border-white/50 px-3 py-1 rounded-full">
-            SLIDE {String(index + 1).padStart(2, '0')} / 23
+            SLIDE {String(index + 1).padStart(2, '0')} / 19
          </div>
       </div>
       

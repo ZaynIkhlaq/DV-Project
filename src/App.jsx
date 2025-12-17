@@ -312,35 +312,11 @@ function App() {
       />
 
       <VisualizationSection
-        title="GDP vs Youth Social Support"
-        description="Explore the inverse relationship between economic prosperity and youth social support in Nordic countries. As GDP increases, youth social support tends to decrease, revealing a critical tension in modern wealthy societies."
-        chartType="nordicGdpSocial"
-        data={nordicData}
-        index={10}
-      />
-
-      <VisualizationSection
-        title="Dependency Ratio vs Institutional Support"
-        description="Analyze how the dependency ratio (proportion of dependents to working-age population) correlates negatively with institutional social support across Nordic nations, highlighting the strain of aging populations on social systems."
-        chartType="nordicDependencySupport"
-        data={nordicData}
-        index={11}
-      />
-
-      <VisualizationSection
         title="Fertility Collapse"
         description="Analyze the global trend of declining fertility rates. This bar chart illustrates how development strains often correlate with a collapse in fertility, posing long-term demographic challenges."
         chartType="fertilityScatter"
         data={fertilityData}
-        index={12}
-      />
-
-      <VisualizationSection
-        title="Development Strain: Suicide vs GDP"
-        description="Revisit the relationship between economic output and suicide rates with a focused dataset, highlighting how the pressures of development can manifest in mental health crises."
-        chartType="suicideStrain"
-        data={suicideStrainData}
-        index={13}
+        index={10}
       />
 
       <VisualizationSection
@@ -348,15 +324,15 @@ function App() {
         description="Track the evolution of fertility rates across developing nations from 1990 to 2020. Observe how countries converge toward or fall below the replacement level of 2.1, signaling profound shifts in family structures and demographic futures."
         chartType="fertilityTrends"
         data={fertilityTrendsData}
-        index={14}
+        index={11}
       />
 
       <VisualizationSection
-        title="Distribution of Key Indicators"
-        description="Examine the distribution patterns of critical socioeconomic indicators across buffer countries. These histograms reveal the diversity and concentration of wealth, inequality, urbanization, fertility, mental health, and social protection across nations."
-        chartType="indicatorDistributions"
-        data={indicatorDistData}
-        index={15}
+        title="Development Strain: Suicide vs GDP"
+        description="Revisit the relationship between economic output and suicide rates with a focused dataset, highlighting how the pressures of development can manifest in mental health crises."
+        chartType="suicideStrain"
+        data={suicideStrainData}
+        index={12}
       />
 
       <VisualizationSection
@@ -364,7 +340,7 @@ function App() {
         description="Compare the multidimensional profiles of four representative countries from different global regions. These radar charts provide a holistic view of how nations balance competing development priorities and experience different trade-offs."
         chartType="countryProfiles"
         data={countryProfilesData}
-        index={16}
+        index={13}
       />
 
       <VisualizationSection
@@ -372,7 +348,7 @@ function App() {
         description="Explore the relationship between income inequality (Gini Index) and wealth concentration in the top 10%. This visualization reveals how unequal societies tend to concentrate wealth at the very top, creating economic divides."
         chartType="inequalityCrisis"
         data={inequalityCrisisData}
-        index={17}
+        index={14}
       />
 
       <VisualizationSection
@@ -380,15 +356,7 @@ function App() {
         description="Examine how the rise of single-person households correlates with economic development. This chart captures the fragmentation of traditional family structures in wealthier, more developed societies."
         chartType="socialAtomization"
         data={socialAtomizationData}
-        index={18}
-      />
-
-      <VisualizationSection
-        title="Debt Trap: Household Debt vs Economic Output"
-        description="Visualize the burden of household debt relative to GDP per capita. High debt levels can trap households in economic precarity, limiting their ability to invest in the future and contributing to broader societal strain."
-        chartType="debtTrap"
-        data={debtTrapData}
-        index={19}
+        index={15}
       />
 
       <VisualizationSection
@@ -396,7 +364,7 @@ function App() {
         description="Explore and compare countries across multiple development and social metrics. Use the dropdown menu to switch between different indicators and see how nations rank against each other in various dimensions of progress."
         chartType="idealComparative"
         data={idealComparativeData}
-        index={20}
+        index={16}
       />
 
       <VisualizationSection
@@ -404,7 +372,7 @@ function App() {
         description="Discover the factors that most strongly correlate with higher wellbeing scores. These horizontal bars reveal which social, economic, and environmental indicators have the greatest positive impact on human flourishing."
         chartType="wellbeingBestPredictors"
         data={wellbeingBestData}
-        index={21}
+        index={17}
       />
 
       <VisualizationSection
@@ -412,7 +380,7 @@ function App() {
         description="Identify the factors that correlate most strongly with lower wellbeing. Understanding these detractors—from inequality to social isolation—helps us recognize the pressures that diminish quality of life across societies."
         chartType="wellbeingWorstPredictors"
         data={wellbeingWorstData}
-        index={22}
+        index={18}
       />
 
       {/* Conclusion Section */}

@@ -218,8 +218,44 @@ function App() {
 
   if (loading) {
     return (
-      <div className="h-screen w-full flex items-center justify-center bg-slate-900 text-white">
-        <div className="text-2xl font-bold animate-pulse">Loading Visualization Data...</div>
+      <div className="h-screen w-full flex items-center justify-center bg-[#020617] text-slate-200 overflow-hidden relative">
+        {/* Abstract Background - matching Hero style */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-0 left-1/4 w-[1px] h-full bg-gradient-to-b from-transparent via-indigo-900/40 to-transparent" />
+          <div className="absolute top-0 right-1/4 w-[1px] h-full bg-gradient-to-b from-transparent via-indigo-900/40 to-transparent" />
+          <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-indigo-900/20 to-transparent" />
+          
+          {/* Glowing Orbs */}
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-600/10 rounded-full blur-[120px] animate-pulse" />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-violet-600/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
+        </div>
+
+        {/* Loading Content */}
+        <div className="relative z-10 flex flex-col items-center justify-center gap-8">
+          {/* Animated Spinner */}
+          <div className="relative">
+            <div className="w-16 h-16 border-4 border-white/10 rounded-full"></div>
+            <div className="absolute top-0 left-0 w-16 h-16 border-4 border-transparent border-t-white/30 rounded-full animate-spin"></div>
+            <div className="absolute top-0 left-0 w-16 h-16 border-4 border-transparent border-r-slate-400/40 rounded-full animate-spin" style={{ animationDuration: '0.8s', animationDirection: 'reverse' }}></div>
+          </div>
+
+          {/* Loading Text */}
+          <div className="text-center space-y-3">
+            <h2 className="text-2xl md:text-3xl font-light text-white tracking-tight">
+              Loading Visualization Data
+            </h2>
+            <p className="text-sm md:text-base text-slate-400 font-light">
+              Preparing your data journey...
+            </p>
+          </div>
+
+          {/* Loading Dots Animation */}
+          <div className="flex gap-2">
+            <div className="w-2 h-2 bg-white/30 rounded-full animate-bounce" style={{ animationDelay: '0s' }}></div>
+            <div className="w-2 h-2 bg-slate-400/60 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+            <div className="w-2 h-2 bg-white/30 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
+          </div>
+        </div>
       </div>
     );
   }

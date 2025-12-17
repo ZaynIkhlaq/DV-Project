@@ -1,12 +1,13 @@
 .urbanization-map-container {
   position: relative;
   width: 100%;
+  height: 100%;
 }
 
 .world-map-container {
   width: 100%;
-  height: 500px;
-  max-height: 500px;
+  height: 100%;
+  min-height: 0;
   border-radius: 12px;
   padding: 1rem;
   background: rgba(15, 23, 42, 0.5);
@@ -111,6 +112,8 @@
   margin-top: 1.5rem;
   gap: 2rem;
   flex-wrap: wrap;
+  width: 100%;
+  overflow: hidden;
 }
 
 .time-controls {
@@ -118,7 +121,8 @@
   align-items: center;
   gap: 1rem;
   flex: 1;
-  min-width: 300px;
+  min-width: 0;
+  flex-wrap: wrap;
 }
 
 .play-button {
@@ -199,7 +203,8 @@
   border-radius: 12px;
   padding: 1rem;
   border: 1px solid rgba(99, 102, 241, 0.2);
-  min-width: 180px;
+  min-width: 0;
+  flex-shrink: 0;
 }
 
 .map-legend h4 {

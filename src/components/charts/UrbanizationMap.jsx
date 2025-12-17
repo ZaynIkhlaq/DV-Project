@@ -121,8 +121,8 @@ const UrbanizationMap = ({ data }) => {
   }
 
   return (
-    <div className="urbanization-map-container">
-      <div className="world-map-container">
+    <div className="urbanization-map-container w-full h-full flex flex-col overflow-hidden">
+      <div className="world-map-container flex-grow min-h-0">
         <ComposableMap
           projectionConfig={{
             scale: 215
@@ -287,8 +287,8 @@ const UrbanizationMap = ({ data }) => {
       </div>
 
       {/* Controls */}
-      <div className="map-controls ">
-        <div className="time-controls ">
+      <div className="map-controls flex-shrink-0">
+        <div className="time-controls">
           <button 
             className="play-button pl-[1px]"
             onClick={handlePlayPause}
